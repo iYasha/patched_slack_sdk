@@ -198,11 +198,8 @@ class SlackLocalStorage:
                 # https://github.com/chromium/chromium/blob/280265158d778772c48206ffaea788c1030b9aaa/net/extras/sqlite/sqlite_persistent_cookie_store.cc#L223-L224  # noqa
                 decrypted = decrypted[32:]
 
-            print('1')
-
             return cls.clean_decrypted(decrypted)
         except Exception as e:
-            print(e)
             if os.path.exists(cls.ENCRYPTION_SLACK_KEY_CACHE_PATH):
                 os.remove(cls.ENCRYPTION_SLACK_KEY_CACHE_PATH)
             raise RuntimeError("Could not decrypt cookie.") from e
